@@ -24362,6 +24362,8 @@ kind: Service
 metadata:
   name: argocd-server
   namespace: cicd
+  labels:
+    app=argocd
 spec:
   type: NodePort
   sessionAffinity: None

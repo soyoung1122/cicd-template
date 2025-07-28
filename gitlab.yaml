@@ -1,0 +1,100 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: gitlab-config
+  namespace: cicd
+spec:
+  accessModes:
+  - ReadWriteOnce
+  resources:
+    requests:
+      storage: 10Gi
+---
+
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: gitlab-data
+  namespace: cicd
+spec:
+  accessModes:
+  - ReadWriteOnce
+  resources:
+    requests:
+      storage: 20Gi
+
+---
+
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: gitlab
+  namespace: cicd
+
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: gitlab
+  namespace: cicd
+spec:
+  selector:
+    matchLabels:
+      app: gitlab
+  template:
+    metadata:
+      labels:
+        app: gitlab
+    spec:
+      containers:
+      - env:
+        - name: GITLAB_OMNIBUS_CONFIG
+          value: "external_url 'http://gitlab-http.cicd.svc.cluster.local' \ngitlab_rails['initial_root_password']='60oFAtpz' \nletsencrypt['enable'] = false \ngrafana['enable'] = false \nprometheus_monitoring['enable'] = false"
+        - name: GITLAB_SKIP_UNMIGRATED_DATA_CHECK
+          value: "true"
+        image: gitlab/gitlab-ce:15.5.9-ce.0
+        imagePullPolicy: IfNotPresent
+        name: gitlab
+        ports:
+        - containerPort: 80
+          protocol: TCP
+        - containerPort: 22
+          protocol: TCP
+        securityContext:
+          privileged: true
+        volumeMounts:
+        - mountPath: /etc/gitlab
+          name: gitlab-config-volume
+        - mountPath: /var/opt/gitlab
+          name: gitlab-data-volume
+      restartPolicy: Always
+      serviceAccount: gitlab
+      volumes:
+      - name: gitlab-config-volume
+        persistentVolumeClaim:
+          claimName: gitlab-config
+      - name: gitlab-data-volume
+        persistentVolumeClaim:
+          claimName: gitlab-data
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: gitlab
+  namespace: cicd
+spec:
+  ports:
+  - name: http
+    port: 80
+    protocol: TCP
+    targetPort: 80
+  - name: ssh
+    port: 22
+    protocol: TCP
+    targetPort: 22
+  selector:
+    app: gitlab
+  type: NodePort

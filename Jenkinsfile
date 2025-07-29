@@ -76,7 +76,7 @@ spec:
     stage('Push to Registry') {
       steps {
         container('buildah') {
-          script { // 이미지 저장소 URL 입력
+          script {
             sh '''
                 echo $DH_CREDS_PSW | buildah login -u $DH_CREDS_USR --password-stdin ${IMAGE_URL}
                 buildah push ${IMAGE_URL}/${IMAGE_NAME}:${MAJOR_VERSION}.${MINOR_VERSION}

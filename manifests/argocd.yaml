@@ -24363,7 +24363,7 @@ metadata:
   name: argocd-server
   namespace: cicd
   labels:
-    app=argocd
+    app: argocd
 spec:
   type: NodePort
   sessionAffinity: None

@@ -53,7 +53,7 @@ Gitlab 대시보드에 접속한다.
 
 ### 2.1.2. Access Token 생성
 
-** \[ 프로필 이미지 > Preferences > Access Tokens \] **를 클릭하여 Access Token 관리 페이지에 접속한다.
+<strong>[ 프로필 이미지 > Preferences > Access Tokens ]</strong>를 클릭하여 Access Token 관리 페이지에 접속한다.
 
 파이프라인에서 프로젝트에 접근 시 필요한 토큰을 생성하기 위한 과정으로 아래 내용을 입력한 후 **Create personal access token** 버튼을 클릭하면 토큰이 생성된다.
 
@@ -65,7 +65,7 @@ Gitlab 대시보드에 접속한다.
 
 ### 2.1.3. 프로젝트 import
 
-**\[ 대시보드 > New project > Import project > Repository by URL \]**을 클릭하여 프로젝트 import 페이지에 접속한다. 
+<strong>[ 대시보드 > New project > Import project > Repository by URL ]</strong>을 클릭하여 프로젝트 import 페이지에 접속한다. 
 
 Github repository를 import하기 위한 과정으로 아래 내역을 입력한 후 **Create project** 버튼을 클릭하면 프로젝트가 생성된다.
 
@@ -80,7 +80,7 @@ Github repository를 import하기 위한 과정으로 아래 내역을 입력한
 
 ### 2.1.4. Webhook 생성
 
-**\[ 대시보드 > webhook을 생성할 프로젝트 > Settings > Webhooks \]**를 클릭하여 webhook 관리 페이지에 접속한다.
+<strong>[ 대시보드 > webhook을 생성할 프로젝트 > Settings > Webhooks ]</strong>를 클릭하여 webhook 관리 페이지에 접속한다.
 
 Webhook을 생성하기 위한 과정으로 아래 내역을 입력한 후 **Add webhook** 버튼을 클릭하면 webhook이 생성된다.
 
@@ -92,7 +92,7 @@ Webhook을 생성하기 위한 과정으로 아래 내역을 입력한 후 **Add
 
 ### 2.1.5. Clone URL 변경
 
-**\[ 대시보드 > 상단 메뉴 > Admin > Settings > Visibility and access controls \]**를 클릭하여 URL 설정 페이지에 접속한다.
+<strong>[ 대시보드 > 상단 메뉴 > Admin > Settings > Visibility and access controls ]</strong>를 클릭하여 URL 설정 페이지에 접속한다.
 
 Clone URL을 외부에서 접속이 가능한 URL로 변경하는 과정으로 아래 내역을 입력한 후 **Save changes** 버튼을 클릭하면 설정이 저장된다.
 
@@ -114,7 +114,7 @@ ArgoCD 대시보드에 접속한다.
 
 ### 2.2.2. repository 연결
 
-**\[ 대시보드 > Settings > CONNECT REPO \]**를 클릭하여 repository 연결 페이지에 접속한다.
+<strong>[ 대시보드 > Settings > CONNECT REPO ]</strong>를 클릭하여 repository 연결 페이지에 접속한다.
 
 manifest repository와 연동하기 위한 과정으로 아래 내역을 입력한 후 **CONNECT** 버튼을 클릭하면 연결 정보가 생성된다.
 
@@ -127,7 +127,7 @@ manifest repository와 연동하기 위한 과정으로 아래 내역을 입력�
 
 ### 2.2.3. application 연동
 
-**\[ 대시보드 > NEW APP \]**을 클릭하여 application 연동 페이지에 접속한다. 
+<strong>[ 대시보드 > NEW APP ]</strong>을 클릭하여 application 연동 페이지에 접속한다. 
 
 application 연동을 위한 과정으로 아래 내역을 입력한 후 **CREATE** 버튼을 클릭하면 연동 정보가 생성된다.
 
@@ -156,7 +156,7 @@ Jenkins 대시보드에 접속한다.
 
 ### 2.3.2. Credentials 등록
 
-**\[ 대시보드 > Jenkins 관리 > Credentials > (global) > Add Credentials \]**를 클릭하여 credential 등록 페이지에 접속한다.
+<strong>[ 대시보드 > Jenkins 관리 > Credentials > (global) > Add Credentials ]</strong>를 클릭하여 credential 등록 페이지에 접속한다.
 
 Gitlab의 인증 정보를 안전하게 보관하기 위한 과정으로 **Create** 버튼을 클릭하면 credential이 생성된다.
 
@@ -179,7 +179,7 @@ Gitlab의 인증 정보를 안전하게 보관하기 위한 과정으로 **Creat
 
 ### 2.3.3. Gitlab connection 등록
 
-**\[ 대시보드 > Jenkins 관리 > System \]**을 클릭하여 설정 페이지에 접속한다.
+<strong>[ 대시보드 > Jenkins 관리 > System ]</strong>을 클릭하여 설정 페이지에 접속한다.
 
 Gitlab과 연결하기 위한 과정으로 아래 내역을 입력하여 **Save** 버튼을 클릭하면 연결이 생성된다.
 
@@ -191,7 +191,7 @@ Gitlab과 연결하기 위한 과정으로 아래 내역을 입력하여 **Save*
 
 ### 2.3.4. Pipeline 생성
 
-**\[ 대시보드 > 새로운 Item \]**을 클릭하여 아이템 생성 페이지에 접속한다.
+<strong>[ 대시보드 > 새로운 Item ]</strong>을 클릭하여 아이템 생성 페이지에 접속한다.
 
 파이프라인 생성을 위한 과정으로 아래 내역을 입력하여 **OK** 버튼을 클릭하면 아이템이 생성된다.
 
@@ -202,7 +202,7 @@ Gitlab과 연결하기 위한 과정으로 아래 내역을 입력하여 **Save*
 
 ### 2.3.5. Pipeline 설정
 
-**\[ 대시보드 > 생성한 파이프라인명 > 구성 \]**을 클릭하여 파이프라인 관리 페이지에 접속한다.
+<strong>[ 대시보드 > 생성한 파이프라인명 > 구성 ]</strong>을 클릭하여 파이프라인 관리 페이지에 접속한다.
 
 파이프라인 설정을 위한 과정으로 아래 내역을 입력하여 **Save** 버튼을 클릭하면 설정이 저장된다.
 

@@ -145,19 +145,34 @@ Gitlab의 인증 정보를 안전하게 보관하기 위한 과정으로 **Creat
 
 #### Gitlab의 계정 정보를 등록한다.
 
-1. Username: 
-2. Password:
+1. **Kind**: Username with password 선택 
+2. **Username**: Gitlab의 로그인 ID 입력
+3. **Password**: Gitlab의 로그인 PW 입력
+4. **ID**: 파이프라인에서 사용할 credential ID 입력
 
-![alt text](image-7.png) // 이건 로그인 정보 등록
+![alt text](images/image-7.png)
 
 #### Gitlab에서 생성한 토큰을 등록한다.
 
-1. gitlab 토큰 등록
-2. gitlab 로그인 정보 등록 두가지 해야함. 
+1. **Kind**: Gitlab API token 선택 
+2. **API token**: Gitlab에서 생성한 토큰 입력
+3. **ID**: 파이프라인에서 사용할 credential ID 입력
 
-![alt text](image-9.png) // 이건 gitlab 토큰 등록
+![alt text](images/image-9.png)
 
-### 2.3.3. Pipeline 생성
+### 2.3.3. Gitlab connection 등록
+
+**[ 대시보드 > Jenkins 관리 > System ]**을 클릭하여 설정 페이지에 접속한다.
+
+Gitlab과 연결하기 위한 과정으로 아래 내역을 입력하여 **Save** 버튼을 클릭하면 연결이 생성된다.
+
+1. **Connection name**: 생성할 연결명 입력
+2. **Gitlab host URL**: http://\<Node Public IP>:\<NodePort> 입력
+3. **Credentials**: 앞에서 등록한 Gitlab api token을 선택
+
+![alt text](images/image-12.png)
+
+### 2.3.4. Pipeline 생성
 
 **[ 대시보드 > 새로운 Item ]**을 클릭하여 아이템 생성 페이지에 접속한다.
 
@@ -168,16 +183,21 @@ Gitlab의 인증 정보를 안전하게 보관하기 위한 과정으로 **Creat
 
 ![alt text](images/image-8.png)
 
-### 2.3.4. 파이프라인 설정
+### 2.3.5. 파이프라인 설정
 
 **[ 대시보드 > 생성한 파이프라인명 > 구성 ]**을 클릭하여 파이프라인 관리 페이지에 접속한다.
 
 파이프라인 설정을 위한 과정으로 아래 내역을 입력하여 **Save** 버튼을 클릭하면 설정이 저장된다.
 
-앞서 등록한 gitlab-api credential을 선택한다.
-![alt text](images/image-10.png) 
+1. **Gitlab Connection**:앞서 등록한 Gitlab connection명 선택
+2. **Triggers**: Build when a change is pushed to GitLab 선택
+    - Gitlab webhook URL을 Gitlab webhook 생성 시 입력 ([참고] [webhook 생성](#214-webhook-생성))
+    - [ Triggers > 고급 > Secret token > Generate ] 클릭하여 생성된 토큰을 Gitlab webhook 생성 시 입력 ([참고] [webhook 생성](#214-webhook-생성))
+3. **Pipeline script**: Jenkinsfile의 환경변수를 수정하여 입력
 
-파이프라인 생성
+![alt text](images/image-10.png)
+
+**Jenkinsfile 환경변수** 
 |환경변수|설명|비고|
 |---|---|---|
 |IMAGE_NAME|해당 파이프라인의 이미지명||

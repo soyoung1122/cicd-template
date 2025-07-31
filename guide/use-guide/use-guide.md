@@ -177,6 +177,15 @@ Gitlab의 인증 정보를 안전하게 보관하기 위한 과정으로 **Creat
 
 ![alt text](images/image-9.png)
 
+#### 이미지 저장소의 계정 정보를 등록한다.
+
+1. **Kind**: Username with password 선택 
+2. **Username**: 이미지 저장소의 로그인 ID 혹은 Access key 입력
+3. **Password**: 이미지 저장소의 로그인 PW 혹은 Secret key 입력
+4. **ID**: 파이프라인에서 사용할 credential ID 입력
+
+![alt text](images/image-7.png)
+
 ### 2.3.3. Gitlab connection 등록
 
 <strong>[ 대시보드 > Jenkins 관리 > System ]</strong>을 클릭하여 설정 페이지에 접속한다.

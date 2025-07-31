@@ -1,10 +1,27 @@
-# 애플리케이션 배포 가이드
+# 사용 가이드
 
 ## 목차
 
-[1. 사전 설정](#1-사전-설정)<br>
-- [1.1. 네임스페이스 생성](#11-네임스페이스-생성)<br>
-- [1.2. 설정 파일 다운로드](#12-설정-파일-다운로드)<br>
+[1. 개요](#1-개요)<br>
+- [1.1. 문서 개요](#11-문서-개요)<br>
+- [1.2. 참고 자료](#12-참고-자료)<br>
+[2. 환경 설정](#2-환경-설정)<br>
+- [2.1. Gitlab 사용](#21-gitlab-사용)<br>
+    - [2.1.1. 대시보드 접속](#211-대시보드-접속)<br>
+    - [2.1.2. Access token 생성](#212-access-token-생성)<br>
+    - [2.1.3. 프로젝트 Import](#213-프로젝트-import)<br>
+    - [2.1.4. Webhook 생성](#214-webhook-생성)<br>
+    - [2.1.5. Clone URL 변경](#215-clone-url-변경)<br>
+- [2.2. ArgoCD 사용](#22-argocd-사용)<br>
+    - [2.2.1. 대시보드 접속](#221-대시보드-접속)<br>
+    - [2.2.2. repository 연결](#222-repository-연결)<br>
+    - [2.2.3. application 연동](#223-application-연동)<br>
+- [2.3. Jenkins 사용](#23-jenkins-사용)<br>
+    - [2.3.1. 대시보드 접속](#231-대시보드-접속)<br>
+    - [2.3.2. Credentials 등록](#232-credentials-등록)<br>
+    - [2.3.3. Gitlab connection 등록](#233-gitlab-connection-등록)<br>
+    - [2.3.4. Pipeline 생성](#234-pipeline-생성)<br>
+    - [2.3.5. Pipeline 설정](#235-파이프라인-설정)<br>
 
 # 1. 개요
 
@@ -12,7 +29,7 @@
 
 Gitlab, Jenkins, ArgoCD를 연동하는 방법에 대한 사용 가이드를 다루고 있다.
 
-## 1.2. 참고자료
+## 1.2. 참고 자료
 
 > https://www.jenkins.io/doc/<br>
 > https://argo-cd.readthedocs.io/en/stable/getting_started/<br>
@@ -183,7 +200,7 @@ Gitlab과 연결하기 위한 과정으로 아래 내역을 입력하여 **Save*
 
 ![alt text](images/image-8.png)
 
-### 2.3.5. 파이프라인 설정
+### 2.3.5. Pipeline 설정
 
 **\[ 대시보드 > 생성한 파이프라인명 > 구성 \]**을 클릭하여 파이프라인 관리 페이지에 접속한다.
 

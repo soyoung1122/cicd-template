@@ -218,7 +218,7 @@ Gitlab과 연결하기 위한 과정으로 아래 내역을 입력하여 **Save*
 1. **Gitlab Connection**:앞서 등록한 Gitlab connection명 선택
 2. **Triggers**: Build when a change is pushed to GitLab 선택
     - Gitlab webhook URL을 Gitlab webhook 생성 시 입력 ([참고] [webhook 생성](#214-webhook-생성))
-    - \[ Triggers > 고급 > Secret token > Generate \] 클릭하여 생성된 토큰을 Gitlab webhook 생성 시 입력 ([참고] [webhook 생성](#214-webhook-생성))
+    - <string>[ Triggers > 고급 > Secret token > Generate ]</strong>을 클릭하여 생성된 토큰을 Gitlab webhook 생성 시 입력 ([참고] [webhook 생성](#214-webhook-생성))
 3. **Pipeline script**: Jenkinsfile의 환경변수를 수정하여 입력
 
 ![alt text](images/image-10.png)

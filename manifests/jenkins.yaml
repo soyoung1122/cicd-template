@@ -2,6 +2,7 @@
 # Source: jenkins/templates/service-account.yaml
 apiVersion: v1
 kind: ServiceAccount
+automountServiceAccountToken: true
 metadata:
   name: jenkins
   namespace: cicd
@@ -22,7 +23,7 @@ metadata:
     "app.kubernetes.io/component": "jenkins-controller"
 type: Opaque
 data:
-  jenkins-admin-password: "OWtNQkFZZVFUSEx3c3Vxc2swR0dHSQ=="
+  jenkins-admin-password: "ZnBEWGdsbWYxZ1NScXFwbXhsMkx1ag=="
   jenkins-admin-user: "YWRtaW4="
 ---
 # Source: jenkins/templates/config.yaml
@@ -57,10 +58,11 @@ data:
     yes n | cp -i /usr/share/jenkins/ref/plugins/* /var/jenkins_plugins/;
     echo "finished initialization"
   plugins.txt: |-
-    kubernetes:4290.v93ea_4b_b_26a_61
-    workflow-aggregator:600.vb_57cdd26fdd7
-    git:5.5.2
-    configuration-as-code:1850.va_a_8c31d3158b_
+    kubernetes:4358.vcfd9c5a_0a_f51
+    workflow-aggregator:608.v67378e9d3db_1
+    git:5.7.0
+    gitlab-plugin:1.9.8
+    configuration-as-code:1971.vf9280461ea_89
 ---
 # Source: jenkins/templates/jcasc-config.yaml
 apiVersion: v1
@@ -118,7 +120,7 @@ data:
           templates:
             - name: "default"
               namespace: "cicd"
-              id: 4ffa004f49816ecf5ac4dd889fd0fd8212eef42019074ca91526cfc5bfbd6393
+              id: 0811dac82599f9b210dcc9d5f7228d5a939be09cb64600b5d40dfe76d79bcfa7
               containers:
               - name: "jnlp"
                 alwaysPullImage: false
@@ -127,7 +129,7 @@ data:
                   - envVar:
                       key: "JENKINS_URL"
                       value: "http://jenkins.cicd.svc.cluster.local:8080/"
-                image: "jenkins/inbound-agent:3261.v9c670a_4748a_9-1"
+                image: "jenkins/inbound-agent:3324.vea_eda_e98cd69-1"
                 privileged: "false"
                 resourceLimitCpu: 512m
                 resourceLimitMemory: 512Mi
@@ -145,6 +147,7 @@ data:
               slaveConnectTimeoutStr: "100"
               yamlMergeStrategy: override
               inheritYamlMergeStrategy: false
+      slaveAgentPort: 50000
       crumbIssuer:
         standard:
           excludeClientIPFromCrumb: true
@@ -172,7 +175,7 @@ spec:
     - "ReadWriteOnce"
   resources:
     requests:
-      storage: "8Gi"
+      storage: "10Gi"
 ---
 # Source: jenkins/templates/rbac.yaml
 # This role is used to allow Jenkins scheduling of agents via Kubernetes plugin.
@@ -320,9 +323,10 @@ spec:
         fsGroup: 1000
         runAsNonRoot: true
       serviceAccountName: "jenkins"
+      automountServiceAccountToken: true
       initContainers:
         - name: config-reload-init
-          image: "docker.io/kiwigrid/k8s-sidecar:1.28.0"
+          image: "docker.io/kiwigrid/k8s-sidecar:1.30.3"
           imagePullPolicy: IfNotPresent
           securityContext:
             allowPrivilegeEscalation: false
@@ -339,7 +343,7 @@ spec:
             - name: NAMESPACE
               value: 'cicd'
             - name: METHOD
-              value: "LIST"     
+              value: "LIST"
           resources:
             {}
           volumeMounts:
@@ -347,9 +351,8 @@ spec:
               mountPath: "/var/jenkins_home/casc_configs"
             - name: jenkins-home
               mountPath: /var/jenkins_home
-
         - name: "init"
-          image: "docker.io/jenkins/jenkins:2.462.3-jdk17"
+          image: "docker.io/jenkins/jenkins:2.504.3-jdk21"
           imagePullPolicy: "Always"
           securityContext:
             allowPrivilegeEscalation: false
@@ -377,7 +380,7 @@ spec:
               name: tmp-volume
       containers:
         - name: jenkins
-          image: "docker.io/jenkins/jenkins:2.462.3-jdk17"
+          image: "docker.io/jenkins/jenkins:2.504.3-jdk21"
           imagePullPolicy: "Always"
           securityContext:
             allowPrivilegeEscalation: false
@@ -458,7 +461,7 @@ spec:
             - mountPath: /tmp
               name: tmp-volume
         - name: config-reload
-          image: "docker.io/kiwigrid/k8s-sidecar:1.28.0"
+          image: "docker.io/kiwigrid/k8s-sidecar:1.30.3"
           imagePullPolicy: IfNotPresent
           securityContext:
             allowPrivilegeEscalation: false
@@ -479,7 +482,7 @@ spec:
             - name: REQ_METHOD
               value: "POST"
             - name: REQ_RETRY_CONNECT
-              value: "10"     
+              value: "10"    
           resources:
             {}
           volumeMounts:

@@ -1,5 +1,3 @@
-// 해당 Jenkinsfile은 예시 파일로 각자 설정에 맞게 변경해서 사용하여야 함.
-
 pipeline {
   agent {
     kubernetes {
@@ -37,22 +35,23 @@ spec:
     disableConcurrentBuilds()
   }
   environment {
-    IMAGE_NAME = 'spring-music' // 해당 이미지의 이름 입력
-    IMAGE_URL = 'contest-test.kr.ncr.ntruss.com' // 이미지 저장소의 URL 입력
-    MAJOR_VERSION = '1' // 이미지의 메이저 버전 입력
-    MINOR_VERSION = "${env.BUILD_NUMBER}" // 이미지의 마이너 버전 입력 ( default : 파이프라인 빌드 넘버 )
-    DH_CREDS=credentials('registry') // Jenkins 관리 > Credentials에 이미지 저장소의 credential 저장 후 이름 입력
+    IMAGE_NAME = 'spring-music' 
+    IMAGE_URL = 'contest-test.kr.ncr.ntruss.com'
+    MAJOR_VERSION = '1'
+    MINOR_VERSION = "${env.BUILD_NUMBER}"
+    IMAGE_CREDS=credentials('registry')
     
-    CODE_URL = '27.96.156.193:30101/gitlab-instance-0cfc610b/spring-music.git' // http://를 제외한 소스 코드 저장소의 URL 입력
-    CODE_BRANCH = 'master' // 소스 코드 저장소 브랜치명
-    CODE_CREDENTIAL = 'gitlab' // Jenkins 관리 > Credentials에 코드 저장소의 credential 저장 후 이름 입력
+    CODE_URL = '27.96.156.193:30101/gitlab-instance-0cfc610b/spring-music.git'
+    CODE_BRANCH = 'master'
+    CODE_CREDENTIAL = 'gitlab'
     
-    MANIFEST_URL = '27.96.156.193:30101/gitlab-instance-0cfc610b/cicd.git' // http://를 제외한 매니페스트 저장소의 URL 입력
-    MANIFEST_BRANCH = 'master' // 매니페스트 저장소 브랜치명
-    MANIFEST_CREDENTIAL = 'gitlab' // Jenkins 관리 > Credentials에 매니페스트 저장소의 credential 저장 후 이름 입력
-
-    USER_NAME = 'soyoung1122' // 커밋할 유저 네임
-    USER_EMAIL = 'xlor4528@gmail.com' // 커밋할 유저 이메일
+    MANIFEST_URL = '27.96.156.193:30101/gitlab-instance-0cfc610b/cicd.git'
+    MANIFEST_BRANCH = 'master'
+    MANIFEST_CREDENTIAL = 'gitlab'
+    USER_NAME = 'soyoung1122'
+    USER_EMAIL = 'xlor4528@gmail.com'
+    MANIFEST_DIR = 'cicd'
+    MANIFEST_NAME = 'deployment.yml'
   }
   stages {
     stage('Git Clone') {
@@ -76,9 +75,9 @@ spec:
     stage('Push to Registry') {
       steps {
         container('buildah') {
-          script { // 이미지 저장소 URL 입력
+          script {
             sh '''
-                echo $DH_CREDS_PSW | buildah login -u $DH_CREDS_USR --password-stdin ${IMAGE_URL}
+                echo $IMAGE_CREDS_PSW | buildah login -u $IMAGE_CREDS_USR --password-stdin ${IMAGE_URL}
                 buildah push ${IMAGE_URL}/${IMAGE_NAME}:${MAJOR_VERSION}.${MINOR_VERSION}
             '''
           }
@@ -92,16 +91,16 @@ spec:
               script {
                   sh '''
                     git clone http://$GIT_USER:$GIT_PASSWORD@${MANIFEST_URL}
-                    chmod -R 777 cicd
+                    chmod -R 777 ${MANIFEST_DIR}
                   '''
-                  dir('cicd/music') {
+                  dir("${MANIFEST_DIR}") {
                       sh '''
                         git fetch origin
                         git checkout -b ${MANIFEST_BRANCH} origin/${MANIFEST_BRANCH} || git checkout ${MANIFEST_BRANCH}
-                        sed -i "s|${IMAGE_NAME}:.*|${IMAGE_NAME}:${MAJOR_VERSION}.${MINOR_VERSION}|g" deployment.yml
+                        sed -i "s|${IMAGE_NAME}:.*|${IMAGE_NAME}:${MAJOR_VERSION}.${MINOR_VERSION}|g" ${MANIFEST_NAME}
                         git config user.name "${USER_NAME}"
                         git config user.email "${USER_EMAIL}"
-                        git add deployment.yml
+                        git add ${MANIFEST_NAME}
                         git commit -m "Update image tag to ${MAJOR_VERSION}.${MINOR_VERSION}"
                         git push origin ${MANIFEST_BRANCH}
                       '''

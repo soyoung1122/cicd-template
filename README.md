@@ -8,7 +8,7 @@
 <br>
 
 **\<파이프라인 구성도 예시>**
-![alt text](image.png)
+![alt text](images/image.png)
 
 <br>
 <br>

@@ -114,7 +114,7 @@ ArgoCD 대시보드에 접속한다.
 
 ### 2.2.2. repository 연결
 
-<strong>[ 대시보드 > Settings > CONNECT REPO ]</strong>를 클릭하여 repository 연결 페이지에 접속한다.
+<strong>[ 대시보드 > Settings > Repositories > CONNECT REPO ]</strong>를 클릭하여 repository 연결 페이지에 접속한다.
 
 manifest repository와 연동하기 위한 과정으로 아래 내역을 입력한 후 **CONNECT** 버튼을 클릭하면 연결 정보가 생성된다.
 
@@ -239,5 +239,6 @@ Gitlab과 연결하기 위한 과정으로 아래 내역을 입력하여 **Save*
 |MANIFEST_CREDENTIAL|매니페스트 저장소의 credential||
 |USER_NAME|commit할 사용자명||
 |USER_EMAIL|commit할 사용자의 이메일||
+|ROOT_DIR|manifest 파일의 루트 폴더||
 |MANIFEST_DIR|업데이트할 manifest 파일의 경로||
 |MANIFEST_NAME|업데이트할 manifest 파일명||

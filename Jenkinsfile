@@ -50,8 +50,9 @@ spec:
     MANIFEST_CREDENTIAL = 'gitlab'
     USER_NAME = 'soyoung1122'
     USER_EMAIL = 'xlor4528@gmail.com'
-    MANIFEST_DIR = 'cicd'
+    MANIFEST_DIR = 'cicd/music'
     MANIFEST_NAME = 'deployment.yml'
+    MANIFEST_DIR = 'cicd'
   }
   stages {
     stage('Git Clone') {
@@ -91,7 +92,7 @@ spec:
               script {
                   sh '''
                     git clone http://$GIT_USER:$GIT_PASSWORD@${MANIFEST_URL}
-                    chmod -R 777 ${MANIFEST_DIR}
+                    chmod -R 777 ${ROOT_DIR}
                   '''
                   dir("${MANIFEST_DIR}") {
                       sh '''

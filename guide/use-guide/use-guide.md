@@ -84,8 +84,8 @@ Github repository를 import하기 위한 과정으로 아래 내역을 입력한
 
 Webhook을 생성하기 위한 과정으로 아래 내역을 입력한 후 **Add webhook** 버튼을 클릭하면 webhook이 생성된다.
 
-1. **URL**: jenkins 파이프라인의 URL
-2. **Secret token**: jenkins 파이프라인의 토큰
+1. **URL**: jenkins 파이프라인의 URL ([참고] [Jenkins URL 및 token 확인](#235-pipeline-설정))
+2. **Secret token**: jenkins 파이프라인의 토큰 ([참고] [Jenkins URL 및 token 확인](#235-pipeline-설정))
 3. **Trigger**: 원하는 트리거 유형
 
 ![alt text](images/image-3.png)

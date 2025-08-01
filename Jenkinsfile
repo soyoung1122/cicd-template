@@ -35,24 +35,24 @@ spec:
     disableConcurrentBuilds()
   }
   environment {
-    IMAGE_NAME = 'spring-music' 
-    IMAGE_URL = 'contest-test.kr.ncr.ntruss.com'
+    IMAGE_NAME = '' 
+    IMAGE_URL = ''
     MAJOR_VERSION = '1'
     MINOR_VERSION = "${env.BUILD_NUMBER}"
-    IMAGE_CREDS=credentials('registry')
+    IMAGE_CREDS=credentials('')
     
-    CODE_URL = '27.96.156.193:30101/gitlab-instance-0cfc610b/spring-music.git'
-    CODE_BRANCH = 'master'
-    CODE_CREDENTIAL = 'gitlab'
+    CODE_URL = ''
+    CODE_BRANCH = ''
+    CODE_CREDENTIAL = ''
     
-    MANIFEST_URL = '27.96.156.193:30101/gitlab-instance-0cfc610b/cicd.git'
-    MANIFEST_BRANCH = 'master'
-    MANIFEST_CREDENTIAL = 'gitlab'
-    USER_NAME = 'soyoung1122'
-    USER_EMAIL = 'xlor4528@gmail.com'
-    MANIFEST_DIR = 'cicd/music'
-    MANIFEST_NAME = 'deployment.yml'
-    MANIFEST_DIR = 'cicd'
+    MANIFEST_URL = ''
+    MANIFEST_BRANCH = ''
+    MANIFEST_CREDENTIAL = ''
+    USER_NAME = ''
+    USER_EMAIL = ''
+    MANIFEST_DIR = ''
+    MANIFEST_NAME = ''
+    ROOT_DIR = ''
   }
   stages {
     stage('Git Clone') {

@@ -239,6 +239,6 @@ Gitlab과 연결하기 위한 과정으로 아래 내역을 입력하여 **Save*
 |MANIFEST_CREDENTIAL|매니페스트 저장소의 credential||
 |USER_NAME|commit할 사용자명||
 |USER_EMAIL|commit할 사용자의 이메일||
-|ROOT_DIR|manifest 파일의 루트 폴더||
+|ROOT_DIR|manifest 파일의 루트 디렉토리||
 |MANIFEST_DIR|업데이트할 manifest 파일의 경로||
 |MANIFEST_NAME|업데이트할 manifest 파일명||

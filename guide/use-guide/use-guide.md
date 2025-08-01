@@ -158,7 +158,7 @@ Jenkins 대시보드에 접속한다.
 
 <strong>[ 대시보드 > Jenkins 관리 > Credentials > (global) > Add Credentials ]</strong>를 클릭하여 credential 등록 페이지에 접속한다.
 
-Gitlab의 인증 정보를 안전하게 보관하기 위한 과정으로 **Create** 버튼을 클릭하면 credential이 생성된다.
+인증 정보를 안전하게 보관하기 위한 과정으로 **Create** 버튼을 클릭하면 credential이 생성된다.
 
 #### Gitlab의 계정 정보를 등록한다.
 

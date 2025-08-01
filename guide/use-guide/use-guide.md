@@ -163,26 +163,26 @@ Gitlab의 인증 정보를 안전하게 보관하기 위한 과정으로 **Creat
 #### Gitlab의 계정 정보를 등록한다.
 
 1. **Kind**: Username with password 선택 
-2. **Username**: Gitlab의 로그인 ID 입력
-3. **Password**: Gitlab의 로그인 PW 입력
-4. **ID**: 파이프라인에서 사용할 credential ID 입력
+2. **Username**: Gitlab의 로그인 ID
+3. **Password**: Gitlab의 로그인 PW
+4. **ID**: 파이프라인에서 사용할 credential ID
 
 ![alt text](images/image-7.png)
 
 #### Gitlab에서 생성한 토큰을 등록한다.
 
 1. **Kind**: Gitlab API token 선택 
-2. **API token**: Gitlab에서 생성한 토큰 입력
-3. **ID**: 파이프라인에서 사용할 credential ID 입력
+2. **API token**: Gitlab에서 생성한 토큰
+3. **ID**: 파이프라인에서 사용할 credential ID
 
 ![alt text](images/image-9.png)
 
 #### 이미지 저장소의 계정 정보를 등록한다.
 
 1. **Kind**: Username with password 선택 
-2. **Username**: 이미지 저장소의 로그인 ID 혹은 Access key 입력
-3. **Password**: 이미지 저장소의 로그인 PW 혹은 Secret key 입력
-4. **ID**: 파이프라인에서 사용할 credential ID 입력
+2. **Username**: 이미지 저장소의 로그인 ID 혹은 Access key
+3. **Password**: 이미지 저장소의 로그인 PW 혹은 Secret key
+4. **ID**: 파이프라인에서 사용할 credential ID
 
 ![alt text](images/image-7.png)
 
@@ -192,8 +192,8 @@ Gitlab의 인증 정보를 안전하게 보관하기 위한 과정으로 **Creat
 
 Gitlab과 연결하기 위한 과정으로 아래 내역을 입력하여 **Save** 버튼을 클릭하면 연결이 생성된다.
 
-1. **Connection name**: 생성할 연결명 입력
-2. **Gitlab host URL**: http://\<Node Public IP>:\<NodePort> 입력
+1. **Connection name**: 생성할 연결명
+2. **Gitlab host URL**: http://\<Node Public IP>:\<NodePort>
 3. **Credentials**: 앞에서 등록한 Gitlab api token을 선택
 
 ![alt text](images/image-12.png)

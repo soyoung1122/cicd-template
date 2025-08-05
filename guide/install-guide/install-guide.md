@@ -60,6 +60,7 @@
 <summary>KT 클라우드</summary>
 
     $ kubectl patch storageclass ktc-nfs-client -p '{"metadata": {"annotations":{"storageclass.kubernetes.io/is-default-class":"true"}}}' 
+    storageclass.storage.k8s.io/ktc-nfs-client patched
 
 </details>
 

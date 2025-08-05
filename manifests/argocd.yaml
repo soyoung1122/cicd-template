@@ -75,7 +75,6 @@ spec:
       nodeSelector:
         kubernetes.io/os: linux
       serviceAccountName: argocd-sa
-MANIFEST:
 ---
 
 # Source: argo-cd/templates/argocd-configs/argocd-notifications-secret.yaml

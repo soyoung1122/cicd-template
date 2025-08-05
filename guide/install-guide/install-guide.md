@@ -52,6 +52,17 @@
     $ ls
     argocd.yaml  gitlab.yaml  jenkins.yaml
 
+## 1.3. StorageClass 설정
+
+##### 아래 명시된 CSP사에 해당하는 경우에만 아래 사항을 진행한다.
+
+<details>
+<summary>KT 클라우드</summary>
+
+    $ kubectl patch storageclass ktc-nfs-client -p '{"metadata": {"annotations":{"storageclass.kubernetes.io/is-default-class":"true"}}}' 
+
+</details>
+
 # 2. Gitlab 배포 및 설정
 
 ## 2.1. Gitlab 배포
@@ -173,7 +184,7 @@
 
 ##### 배포 확인
 
-    $ kubectl get pods -n cicd -l app=jenkins
+    $ kubectl get pods -n cicd -l app.kubernetes.io/name=jenkins
     NAME        READY   STATUS    RESTARTS   AGE
     jenkins-0   2/2     Running   0          10m
 

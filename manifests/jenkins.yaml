@@ -322,10 +322,18 @@ spec:
       securityContext:
         runAsUser: 1000
         fsGroup: 1000
-        runAsNonRoot: true
+        runAsNonRoot: false
       serviceAccountName: "jenkins"
       automountServiceAccountToken: true
       initContainers:
+        - name: fix-permissions
+          image: busybox
+          command: ["sh", "-c", "chown -R 1000:1000 /var/jenkins_home"]
+          securityContext:
+            runAsUser: 0
+          volumeMounts:
+            - name: jenkins-home
+              mountPath: /var/jenkins_home
         - name: config-reload-init
           image: "docker.io/kiwigrid/k8s-sidecar:1.30.3"
           imagePullPolicy: IfNotPresent

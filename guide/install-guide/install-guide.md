@@ -51,7 +51,7 @@
 
     $ cd cicd-template/manifests # 추후 변경    
     $ ls
-    argocd.yaml  gitlab.yaml  jenkins.yaml
+    argocd.yaml  gitlab.yaml  jenkins.yaml nhn-sc.yaml
 
 ## 1.3. StorageClass 설정
 
@@ -59,9 +59,26 @@
 
 <details>
 <summary>KT 클라우드</summary>
+<br>
+아래 명령어를 실행하여 기존 StorageClass에 default 설정을 추가한다.
 
     $ kubectl patch storageclass ktc-nfs-client -p '{"metadata": {"annotations":{"storageclass.kubernetes.io/is-default-class":"true"}}}' 
     storageclass.storage.k8s.io/ktc-nfs-client patched
+
+</details>
+<details>
+<summary>NHN 클라우드</summary>
+<br>
+아래 명령어를 실행하여 StorageClass를 생성한다.
+
+    $ kubectl apply nhn-sc.yaml
+    storageclass.storage.k8s.io/csi-storageclass created
+
+아래 명령어를 실행하여 정상적으로 생성되었는지 확인한다.
+
+    $ kubectl get sc
+    NAME                         PROVISIONER                RECLAIMPOLICY   VOLUMEBINDINGMODE      ALLOWVOLUMEEXPANSION   AGE
+    csi-storageclass (default)   cinder.csi.openstack.org   Delete          WaitForFirstConsumer   false                  3s
 
 </details>
 
